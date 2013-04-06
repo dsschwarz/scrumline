@@ -3,9 +3,17 @@
 </h1>
 <% if !current_user.groups.include? @group %>
   <% if Grequest.find_by_user_id_and_group_id(current_user.id, @group.id) %>
-    <label class="alert bounded">You have requested to join</label>
+    <%= link_to '#', class: "btn disabled btn-warning" do %>
+      <i class="icon-exclamation-sign icon-white"></i>
+      Requested
+    <% end %>
   <% else %>
     <%= link_to "Join", group_join_path(@group) , class: "btn" %>
+  <% end %>
+<% else %>
+  <%= link_to '#', class: "btn disabled btn-success" do %>
+    <i class="icon-ok icon-white"></i>
+    Member
   <% end %>
 <% end %>
   
