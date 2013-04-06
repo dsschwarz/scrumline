@@ -1,11 +1,37 @@
 <div class="container">
 <h1> <%= @group.name %>
 </h1>
-<span>
-  <%= render @group.users %>
-</span>
-<span>
-  <%= render @group.projects %>
-</span>
+<% if !current_user.groups.include? @group %>
+  <% if Grequest.find_by_user_id_and_group_id(current_user.id, @group.id) %>
+    <label class="alert bounded">You have requested to join</label>
+  <% else %>
+    <%= link_to "Join", group_join_path(@group) , class: "btn" %>
+  <% end %>
+<% end %>
+  
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#project-tab" data-toggle="tab">Projects</a></li>
+    <li ><a href="#feed-tab" data-toggle="tab">Feed</a></li>
+    <li ><a href="#member-tab" data-toggle="tab">Members</a></li>
+    <% if @group.mods.include? current_user %>
+      <li ><a href="#join-tab" data-toggle="tab">Requests to Join</a></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="project-tab">
+      <%= render @group.projects %>
+    </div>
+    <div class="tab-pane" id="feed-tab">
+    </div>
+    <div class="tab-pane" id="member-tab">
+      <%= render @group.members %>
+    </div>
+    <div class="tab-pane" id="join-tab">
+         <%= render @group.grequests %>  
+    </div>
+  </div>
+</div>
+  
 </div>
 

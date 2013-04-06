@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402190440) do
+ActiveRecord::Schema.define(:version => 20130405145329) do
 
   create_table "grequests", :force => true do |t|
     t.integer  "group_id"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(:version => 20130402190440) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "groups_members", :id => false, :force => true do |t|
+    t.integer "group_id", :null => false
+    t.integer "user_id",  :null => false
+  end
+
+  add_index "groups_members", ["group_id", "user_id"], :name => "by_group_and_member", :unique => true
+
+  create_table "groups_mods", :id => false, :force => true do |t|
+    t.integer "group_id", :null => false
+    t.integer "user_id",  :null => false
+  end
+
+  add_index "groups_mods", ["group_id", "user_id"], :name => "by_group_and_mod", :unique => true
 
   create_table "groups_users", :id => false, :force => true do |t|
     t.integer "user_id",  :null => false
@@ -46,6 +60,20 @@ ActiveRecord::Schema.define(:version => 20130402190440) do
     t.integer "task_id",     :null => false
     t.integer "language_id", :null => false
   end
+
+  create_table "members_projects", :id => false, :force => true do |t|
+    t.integer "user_id",    :null => false
+    t.integer "project_id", :null => false
+  end
+
+  add_index "members_projects", ["user_id", "project_id"], :name => "by_member_and_project", :unique => true
+
+  create_table "mods_projects", :id => false, :force => true do |t|
+    t.integer "user_id",    :null => false
+    t.integer "project_id", :null => false
+  end
+
+  add_index "mods_projects", ["user_id", "project_id"], :name => "by_mod_and_project", :unique => true
 
   create_table "prequests", :force => true do |t|
     t.integer  "project_id"

@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   has_secure_password
   attr_accessible :email, :name, :password, :password_confirmation, :remember_token
-  has_many :projects
+  has_and_belongs_to_many :modded_projects, :class_name => 'Project', :join_table => :mods_projects
+  has_and_belongs_to_many :projects, :class_name => 'Project', :join_table => :members_projects
+  has_and_belongs_to_many :modded_groups, :class_name => 'Group', :join_table => :groups_mods
+  has_and_belongs_to_many :groups, :class_name => 'Group', :join_table => :groups_members
   has_and_belongs_to_many :tasks
   has_and_belongs_to_many :languages
-  has_and_belongs_to_many :groups
   has_many :trequests
   has_many :grequests
   has_many :prequests

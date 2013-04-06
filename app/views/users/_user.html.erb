@@ -1,6 +1,6 @@
 <div class="partial">
-<div class="partial-content"> <%= user.name %>
-</div>
-<div class="partial-content"> <%= user.id %>
-</div>
+  <a href="/users/<%= user.id %>" class="hidden-link">
+    <div class="partial-content"> <%= user.name %>
+    </div>
+  </a>
 </div>

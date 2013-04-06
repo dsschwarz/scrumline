@@ -3,6 +3,7 @@
 <head>
   <title>Scrum</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link rel="stylesheet" type="text/css" href="/assets/partials.css">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -10,6 +11,9 @@
 <header>
 <%= render 'layouts/header' %>
 </header>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <div class="content">
   <%= yield %>
 </div>

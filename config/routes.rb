@@ -1,15 +1,37 @@
 Scrum::Application.routes.draw do
   resources :users
   resources :tasks
-  resources :projects
-  resources :groups
+  resources :projects do
+    member do
+      get "join"
+      get "kick"
+      get "prequests"
+      match "/accept/:prequest_id", to: "projects#accept"
+      match "/decline/:prequest_id", to: "projects#decline"
+    end
+    collection do
+      get 'browse'
+    end
+  end
+
+  resources :groups do
+    member do
+      get "join"
+      get "kick"
+      get "grequests"
+      match "/accept/:grequest_id", to: "groups#accept"
+      match "/decline/:grequest_id", to: "groups#decline"
+    end
+    collection do
+      get 'browse'
+    end
+  end
   resources :sessions
 
   match "/",          to: "application#home", :as => :home
   match "/signup",    to: "users#new"
   match "/signin",    to: "sessions#new"
   match "/signout",    to: "sessions#destroy"
-
 
 
   

@@ -19,8 +19,8 @@ class UsersController < ApplicationController
     @user = User.first # change to current user
     @users = []
     @user.groups.each do |group|
-      group.users.each do |user|
-        if (true) # if !(user in @users)
+      group.members.each do |user|
+        if !@users.include? user
           @users.push(user)
         end
       end
