@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405145329) do
+ActiveRecord::Schema.define(:version => 20130406201632) do
 
   create_table "grequests", :force => true do |t|
     t.integer  "group_id"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20130405145329) do
     t.integer  "parent_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "group_id"
   end
 
   create_table "tasks_users", :id => false, :force => true do |t|

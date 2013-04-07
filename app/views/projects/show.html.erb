@@ -1,6 +1,12 @@
+<script src="/assets/modal.js" type="text/javascript"></script>
+<div class="wrapper">
+  <div class ="alignleft title">
 <h1> <%= @project.name %>
 </h1>
-<span class="alignright">
+<h5>Project Description</h5>
+<%= @project.description %>
+</div>
+<div class="alignright">
 <h5>Group</h5>
 <%= render @project.group %>
 
@@ -23,12 +29,8 @@
 <% if @project.mods.include? current_user %>
   <%= link_to "Delete",@project, method: "delete", class: "btn btn-danger" %>
 <% end %>
-</span>
-    <i class="icon-ok icon-white"></i>
-
-<h5>Project Description</h5>
-<%= @project.description %>
-<br><br><br>
+</div>
+</div>
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#task-tab" data-toggle="tab">Tasks</a></li>
@@ -39,7 +41,12 @@
     <% end %>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="task-tab">
+    <div class="tab-pane active has-modal" id="task-tab">
+      <a href="#newTaskModal" role="button" class="btn btn-success alignright" data-toggle="modal">New Task</a>
+      <%= render template: "/tasks/modal" %>
+      <% if @project.members.include? current_user %>
+        <%= link_to "New Task",new_task_path, class: "btn btn-primary alignright" %>
+      <% end %>
       <%= render @project.tasks %>
     </div>
     <div class="tab-pane" id="feed-tab">

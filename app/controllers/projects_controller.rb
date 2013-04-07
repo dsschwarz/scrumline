@@ -42,6 +42,15 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to "/projects"
   end
+  def addtask
+    @task = Task.new()
+    @task.description = params[:description]
+    @task.project_id = params[:project_id]
+    @task.group_id = Project.find(params[:project_id]).group_id
+    @task.users << current_user
+    @task.save
+    render @task
+  end
   def kick
     @user = User.find(params[:user_id])
     @project = Project.find(params[:id])
