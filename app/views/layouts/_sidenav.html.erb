@@ -1,0 +1,57 @@
+<script>
+  $(document).ready(function(){
+    $('#hideSideNavButton').hide();
+    $(".side-nav").hide();
+    $("a").tooltip({
+      content: function () {
+        return 'This is a test';
+      } 
+    });
+    $('#hideSideNavButton').click(function() {
+      $(".side-nav").hide();
+      $('#hideSideNavButton').hide();
+      $('#showSideNavButton').show();
+    });
+    $('#showSideNavButton').click(function() {
+      $(".side-nav").show();
+      $('#hideSideNavButton').show();
+      $('#showSideNavButton').hide();
+    });
+    $(".side-nav").data('powertip', 'This will be the <b>tooltip text</b>.');
+  });
+</script>
+<button class="btn" id="hideSideNavButton">Hide</button>
+<button class="btn" id="showSideNavButton"> Show</button>
+<div class="side-nav">
+  <ul class="nav nav-list">
+    <% @hgroups.each do |g| %>
+      <li>
+          <div class="accordion-heading">
+           <a class="accordion-toggle" data-toggle="collapse" href="#plist<%= g.id %>">
+              <%= g.name %>
+           </a>
+         </div>
+         <div id="plist<%= g.id %>" class="accordion-body collapse">
+           <ul>
+             <% g.projects.each do |p| %>
+               <li>
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle" title="<%= project_url(p) %>" data-toggle="collapse" href="#tlist<%= g.id %>-<%= p.id %>">
+                        <%= p.name %>
+                     </a>
+                   </div>
+                   <div id="tlist<%= g.id %>-<%= p.id %>" class="accordion-body collapse">
+                     <ul>
+                       <% p.tasks.each do |t| %>
+                         <li><a><%= t.description %></a></li>
+                       <% end %>
+                     </ul>
+                   </div>
+              </li>
+             <% end %>
+           </ul>
+         </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

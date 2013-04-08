@@ -39,7 +39,7 @@ Scrum::Application.routes.draw do
       get 'browse'
     end
   end
-  resources :sessions
+  resources :sessions, only: :create
 
   match "/",          to: "application#home", :as => :home
   match "/signup",    to: "users#new"
