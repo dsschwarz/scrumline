@@ -6,10 +6,10 @@
       <%= project.description %>
     </div>
     <% if project.mods.include? current_user %>
-      <%= link_to "Delete",project, method: "delete", class: "btn btn-danger" %>
+      <%= button_to "Delete",project, method: "delete", class: "btn btn-danger" %>
     <% end %>
     <% if current_user.groups.include? project.group and !project.members.include? current_user %>
-      <%= link_to "Join", project_join_path(project) , class: "btn" %>
+      <%= link_to "Join", join_project_path(project) , class: "btn" %>
     <% end %>
     <br>
   </a>

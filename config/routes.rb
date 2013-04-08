@@ -1,12 +1,26 @@
 Scrum::Application.routes.draw do
   resources :users
-  resources :tasks
+  resources :tasks do
+    member do
+      get "join"
+      get "kick"
+      get "trequests"
+      match "/accept/:trequest_id", to: "tasks#accept"
+      match "/decline/:trequest_id", to: "tasks#decline"
+    end
+    collection do
+      get 'browse'
+      get "addtask"
+    end
+  end
   resources :projects do
+    member do
       get "join"
       get "kick"
       get "prequests"
       match "/accept/:prequest_id", to: "projects#accept"
       match "/decline/:prequest_id", to: "projects#decline"
+    end
     collection do
       get 'browse'
       get "addtask"

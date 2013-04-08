@@ -38,7 +38,10 @@ class TasksController < ApplicationController
     @task.tasks.each do |t|
       t.destroy
     end
-    @task.destroy
+    puts "-------------------------"
+    puts "Destroying Task"
+    puts @task.destroy
+    puts "-------------------------"
     redirect_to "/tasks"
   end
   def kick

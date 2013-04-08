@@ -9,6 +9,9 @@
 .wrapper {
   overflow: hidden;
 }
+object, a {
+  outline: none !important
+}
 
 /*
  *   Forms
@@ -42,7 +45,6 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 0;
   display: block;
   visibility: hidden;
   float: left;
@@ -93,10 +95,8 @@ a.hover-dropdown:hover {
 ul.nav li {
     display: block;
     position: relative;
-    float: left;
 }
 .hover-dropdown-menu li a {
-  z-index: 10;
   display: block;
   padding: 3px 20px;
   clear: both;
@@ -120,15 +120,34 @@ ul.nav li {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2fa4e7', endColorstr='#ff1a99e2', GradientType=0);
 }
-li:hover ul {
+li:hover ul.hover-dropdown-menu {
   margin-top: 0px;
     visibility: visible;
     position: absolute;
   opacity: 100;
 }
-li:hover li {
+ul.nav-list li {
     float: none;
     font-size: 14px;
+}
+.side-nav {
+  width: 10;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  background-color: #f0f2f0;
+  float: left;
+  border: 3px solid #27a0e5;
+  border-left: 0px;
+  -webkit-border-bottom-right-radius: 6px;
+     -moz-border-bottom-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+  -webkit-border-top-right-radius: 6px;
+     -moz-border-top-right-radius: 6px;
+          border-top-right-radius: 6px;
+}
+.side-nav a {
+  text-decoration: none !important;
 }
 
 /*!

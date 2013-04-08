@@ -19,7 +19,7 @@
 <% end %>
 
 <% if @task.users.include? current_user %>
-  <%= link_to "Delete",@task, method: "delete", class: "btn btn-danger" %>
+  <%= button_to "Delete",@task, method: "delete", class: "btn btn-danger" %>
 <% end %>
 </span>
     <i class="icon-ok icon-white"></i>

@@ -33,6 +33,9 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @users = @project.members
     @mods = @project.mods
+    if !@project
+      redirect_to "/projects"
+    end
   end
   def destroy
     @project = Project.find(params[:id])
@@ -40,7 +43,7 @@ class ProjectsController < ApplicationController
       t.destroy
     end
     @project.destroy
-    redirect_to "/projects"
+    redirect_to request.referer
   end
   def addtask
     @task = Task.new()
