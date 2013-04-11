@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.users << current_user
-    @task.group_id = @task.project.id
+    @task.group_id = @task.project.group.id
     
     if @task.save
       redirect_to task_path(@task)

@@ -7,6 +7,19 @@
   <%= javascript_include_tag "application" %>
   <script src="/assets/modal.js" type="text/javascript"></script>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    var ssInterval;
+    $(document).ready(function(){
+        ssInterval = window.setTimeout(showPonies, 20000);
+        $(document).mousemove(function() {
+          window.clearTimeout(ssInterval);
+          ssInterval = window.setTimeout(showPonies, 20000);
+          });
+        });
+function showPonies() {
+   window.clearTimeout(ssInterval);
+}
+  </script>
 </head>
 <body>
 <header>

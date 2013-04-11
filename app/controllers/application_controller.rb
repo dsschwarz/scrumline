@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
     if signed_in?
       @hgroups = current_user.groups
       @hprojects = current_user.projects
+      @htasks = current_user.tasks
     end
 	end
 end
