@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406201632) do
+ActiveRecord::Schema.define(:version => 20130515181307) do
 
   create_table "grequests", :force => true do |t|
     t.integer  "group_id"
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(:version => 20130406201632) do
 
   add_index "mods_projects", ["user_id", "project_id"], :name => "by_mod_and_project", :unique => true
 
+  create_table "posts", :force => true do |t|
+    t.string   "content"
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.integer  "project_id"
+    t.integer  "group_id"
+    t.boolean  "bubble"
+    t.integer  "flags_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "prequests", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -119,21 +132,6 @@ ActiveRecord::Schema.define(:version => 20130406201632) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "remember_token"
-  end
-
-  create_table "users_groups", :id => false, :force => true do |t|
-    t.integer "user_id",  :null => false
-    t.integer "group_id", :null => false
-  end
-
-  create_table "users_languages", :id => false, :force => true do |t|
-    t.integer "user_id",     :null => false
-    t.integer "language_id", :null => false
-  end
-
-  create_table "users_tasks", :id => false, :force => true do |t|
-    t.integer "user_id", :null => false
-    t.integer "task_id", :null => false
   end
 
 end

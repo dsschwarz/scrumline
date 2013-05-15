@@ -31,7 +31,6 @@ function showPonies() {
 <% if signed_in? %>
   <%= render 'layouts/sidenav' %>
 <% end %>
-<%= render 'layouts/orgTree' %>
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
